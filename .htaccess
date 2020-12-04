@@ -1,0 +1,31 @@
+RewriteEngine on
+RewriteCond %(HTTPS) off 
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+REwriteCond $1 |^(index\.php)
+REwriteRule ^$ index.php?page=home [L]
+
+RewriteRule ^about/?$ index.php?page=tentang [L]
+RewriteRule ^product/?$ index.php?page=produk [L]
+RewriteRule ^detail_produk/?(.*)$ index.php?page=detail_produk&id=$1 [L]
+RewriteRule ^contact/?$ index.php?page=kontak [L]
+
+
+
+Options All -Indexes
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+<FilesMatch "\.(jpg|jpeg|png|gif)$">
+  Header set Cache-Control "max-age=21600, public"
+ </FilesMatch>
+ 
+ #php -- BEGIN cPanel-generated handler, do not edit
+ # Set the "ea-php71" package as the default "PHP" programming language.
+ <IfModule mime_module>
+   AddHandler application/x-httpd-ea-php71 .php .php7 .phtml
+  </IfModule> 
+ #php -- END cPanel-generated handler, do not edit
